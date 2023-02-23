@@ -122,27 +122,90 @@ class _CollegesListState extends State<CollegesList> {
           ),
         ),
       ),
-      body: ListView.builder(
-        itemCount: 3,
-        itemBuilder: (context,index){
-          return InkWell(
-            onTap: (){
-              Navigator.push(
-                  context,MaterialPageRoute(
-                  builder: (context)=>const CollegeDetails()
-              )
-              );
-            },
-            child: collegeCard(
-                description: description,
-                rating: rating,
-                name: collegeNames[index],
-                imagePath: imagePaths[index],
-                highlight: highlights[index],
-                number: numbers
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 10
+              ),
+              child: Row(
+                children: [
+                  Container(
+                          height: 30,
+                          width: MediaQuery.of(context).size.width/2-26,
+                          child: Center(
+                            child: Text(
+                                "MVSH Engineering College",
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontFamily: GoogleFonts.lato().fontFamily,
+                              ),
+                            ),
+                          ),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Colors.white,
+                              border: Border.all(
+                                  color: Colors.grey.shade400
+                              )
+                          ),
+                      ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    height: 30,
+                    width: MediaQuery.of(context).size.width/2-26,
+                    child: Center(
+                      child: Text(
+                        "MVSH Engineering College",
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontFamily: GoogleFonts.lato().fontFamily,
+                        ),
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.white,
+                        border: Border.all(
+                            color: Colors.grey.shade400
+                        )
+                    ),
+                  ),
+                ],
+              ),
             ),
-          );
-        },
+             ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: 3,
+                itemBuilder: (context,index){
+                  return InkWell(
+                    onTap: (){
+                      Navigator.push(
+                          context,MaterialPageRoute(
+                          builder: (context)=>const CollegeDetails()
+                      )
+                      );
+                    },
+                    child: collegeCard(
+                        description: description,
+                        rating: rating,
+                        name: collegeNames[index],
+                        imagePath: imagePaths[index],
+                        highlight: highlights[index],
+                        number: numbers
+                    ),
+                  );
+                },
+              ),
+          ],
+        ),
       ),
       bottomNavigationBar: BottomNavBar(),
     );
