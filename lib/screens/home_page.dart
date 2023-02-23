@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage>
     super.initState();
   }
 
-  String? value;
+  String? highlighter;
   var headings = [
     "Top Colleges ",
     "Top Schools ",
@@ -189,21 +189,24 @@ class _HomePageState extends State<HomePage>
           ),
           Radio(
             activeColor: primaryColor,
+            fillColor: MaterialStateProperty.all(primaryColor),
             visualDensity: const VisualDensity(
                 horizontal: VisualDensity.minimumDensity,
                 vertical: VisualDensity.minimumDensity),
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             value: name,
-            groupValue: value,
+            groupValue: highlighter,
             onChanged: (value) {
               tapped(() {
-                  value = value.toString();
+                  setState(() {
+                    highlighter = value.toString();
+                  });
                   Timer(const Duration(milliseconds: 250), () {
                     Navigator.pop(context);
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const CollegesList(),
+                        builder: (context) => CollegesList(),
                       ),
                     );
                   });
